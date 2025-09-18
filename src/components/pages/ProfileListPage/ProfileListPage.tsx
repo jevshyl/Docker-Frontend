@@ -1,19 +1,25 @@
 import {Box} from '@mui/system';
-import logo from '../../logo1.png';
-import {Button} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import Navbar from "../../molecules/Navbar";
+import {useEffect, useState} from "react";
+import {User} from "../../../types/models/User.model";
+import {useParams} from "react-router-dom";
+import UserService from "../../../Services/UserService";
 
 export default function HomePage() {
-    const navigate = useNavigate();
+    const [user, setUser] = useState<User>();
+    const { userId } = useParams();
+
+    useEffect(() => {
+        if (userId) {
+            UserService.getUser(userId).then((res) => {
+                return setUser(res);
+            });
+        }
+    }, [userId]);
 
     return (
-        <>
-            <Navbar/>
             <Box
                 display="flex"
-                alignItems="center"
-                justifyContent="center"
                 flexDirection="column"
                 height="100vh"
                 sx={{
@@ -23,10 +29,20 @@ export default function HomePage() {
                     textAlign: 'center',
                 }}
             >
-                <Box>
-                    <h1>HI</h1>
+                <Box
+                    display="flex"
+                    alignItems="flex-start"
+                    justifyContent="flex-start"
+                    margin="25px"
+                    flexDirection="column"
+                    height="250px"
+                    sx={{
+                        color: '#fff',
+                        textAlign: 'center',
+                    }}>
+                    <h3>Name: {user?.firstName} {user?.lastName}</h3>
                 </Box>
 
-            </Box></>
+            </Box>
     );
 }

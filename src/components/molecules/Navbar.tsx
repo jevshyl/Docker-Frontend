@@ -1,9 +1,13 @@
 import {Box} from '@mui/system';
+import React, {useContext} from "react";
+import NavButton from "../atoms/NavButton";
+import ActiveUserContext from "../../Contexts/ActiveUserContext";
 import {Button} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 
 export default function Navbar() {
-    const navigate = useNavigate();
+
+    const activeUser = useContext(ActiveUserContext);
+    const {checkRole} = useContext(ActiveUserContext);
 
     return (
         <Box
@@ -19,18 +23,22 @@ export default function Navbar() {
                 textAlign: 'center',
             }}
         >
-            <Button
-                variant="contained"
-                sx={{
-                    backgroundColor: '#00d4ff',
-                    '&:hover': {backgroundColor: '#0f0fcf'},
-                }}
-                onClick={() => navigate('/login')}
-            >
-                Login
-            </Button>
-
-            NAVBAR
+            {!activeUser.user && (
+                <NavButton path={"login"} name={"Login"}/>
+            )}
+            {checkRole("ADMIN") && (
+                <NavButton path={"admin"} name={"Admin"}/>
+            )}
+            {activeUser.user && checkRole("ADMIN") && (
+                <NavButton path={"users"} name={"Users"}/>
+            )}
+            {activeUser.user && (
+                <NavButton path={`listOverview`} name={"All Lists"}/>
+            )}
+            {activeUser.user && (
+                <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"}/>
+            )}
+            <Button onClick={activeUser.logout}>Logout</Button>
 
         </Box>
     );

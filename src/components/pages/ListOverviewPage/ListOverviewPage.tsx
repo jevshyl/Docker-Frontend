@@ -1,11 +1,8 @@
 import {Box} from '@mui/system';
-import Navbar from "../../molecules/Navbar";
 
 export default function ListOverviewPage() {
 
     return (
-        <>
-            <Navbar/>
             <Box
                 display="flex"
                 alignItems="center"
@@ -23,6 +20,6 @@ export default function ListOverviewPage() {
                     <h1>HI</h1>
                 </Box>
 
-            </Box></>
+            </Box>
     );
 }

@@ -1,7 +1,5 @@
 import {Box} from '@mui/system';
 import logo from '../../logo1.png';
-import {Button} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import Navbar from "../molecules/Navbar";
 
 export default function HomePage() {

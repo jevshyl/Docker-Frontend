@@ -7,13 +7,16 @@ import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
 import ProfileListPage from "../components/pages/ProfileListPage/ProfileListPage";
 import AdminPage from "../components/pages/AdminPage/AdminPage";
+import {useContext} from "react";
+import ActiveUserContext from "../Contexts/ActiveUserContext";
+import ListOverviewPage from "../components/pages/AdminPage/AdminPage";
 
 /**
  * Router component renders a route switch with all available pages
  */
 
 const Router = () => {
-    //const { checkRole } = useContext(ActiveUserContext);
+    const { checkRole } = useContext(ActiveUserContext);
 
     /** navigate to different "home"-locations depending on Role the user have */
 
@@ -36,8 +39,35 @@ const Router = () => {
                 }
             />
 
-            <Route path={'/profileList'} element={<ProfileListPage/>}/>
-            <Route path={'/admin'} element={<AdminPage/>}/>
+            <Route
+                path='/profileList/:userId'
+                element={
+                    <PrivateRoute
+                        requiredAuths={[]}
+                        element={<ProfileListPage/>}
+                    ></PrivateRoute>
+                }
+            />
+
+            <Route
+                path='/admin'
+                element={
+                    <PrivateRoute
+                        requiredAuths={[]}
+                        element={<AdminPage/>}
+                    ></PrivateRoute>
+                }
+            />
+
+            <Route
+                path='/listOverview'
+                element={
+                    <PrivateRoute
+                        requiredAuths={[]}
+                        element={<ListOverviewPage/>}
+                    ></PrivateRoute>
+                }
+            />
 
             <Route
                 path='/useredit/:userId'
