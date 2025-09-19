@@ -6,4 +6,4 @@ user component: http://localhost:3000/users
 
 ## Dokumentation
 
-[Clicke hier zur Dokumentation](https://github.com/Luka0731/UEK223-OurSpace-Group-6-Frontend/blob/main/docs/ourspace-documentation.pdf)
+[Klicke hier zur Dokumentation](https://github.com/Luka0731/UEK223-OurSpace-Group-6-Frontend/blob/main/docs/ourspace-documentation.pdf)
