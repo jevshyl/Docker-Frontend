@@ -26,20 +26,18 @@ export default function Navbar() {
             {!activeUser.user && (
                 <NavButton path={"login"} name={"Login"}/>
             )}
-            {checkRole("ADMIN") && (
-                <NavButton path={"admin"} name={"Admin"}/>
-            )}
-            {activeUser.user && checkRole("ADMIN") && (
-                <NavButton path={"users"} name={"Users"}/>
-            )}
             {activeUser.user && (
-                <NavButton path={`listOverview`} name={"All Lists"}/>
+                <>
+                    {checkRole("ADMIN") && (
+                        <>
+                            <NavButton path={"admin"} name={"Admin"}/>
+                        </>
+                    )}
+                    <NavButton path={"users"} name={"Users"}/>
+                    <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"}/>
+                    <Button onClick={activeUser.logout}>Logout</Button>
+                </>
             )}
-            {activeUser.user && (
-                <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"}/>
-            )}
-            <Button onClick={activeUser.logout}>Logout</Button>
-
         </Box>
     );
 }

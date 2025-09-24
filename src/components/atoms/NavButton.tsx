@@ -11,15 +11,15 @@ export default function NavButton({ path, name }: NavButtonProps) {
 
 
     return (
-            <Button
-                variant="contained"
-                sx={{
-                    backgroundColor: '#00d4ff',
-                    '&:hover': {backgroundColor: '#0f0fcf'},
-                }}
-                onClick={() => navigate(`/${path}`)}
-            >
-                {name}
-            </Button>
+        <Button
+            variant="contained"
+            sx={{
+                backgroundColor: '#00d4ff',
+                '&:hover': {backgroundColor: '#0f0fcf'},
+            }}
+            onClick={() => navigate(`/${path}`)}
+        >
+            {name}
+        </Button>
     );
 }
