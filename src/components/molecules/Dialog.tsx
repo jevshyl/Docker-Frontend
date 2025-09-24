@@ -1,6 +1,9 @@
 import {Box, Button, Dialog as MuiDialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
+import {useContext} from "react";
+import ActiveUserContext from "../../Contexts/ActiveUserContext";
 
 type DialogProps = {
+    id?: string;
     open: boolean;
     setOpen?: (setOpen: boolean) => void;
     dialogTitle?: string;
@@ -13,6 +16,7 @@ type DialogProps = {
 
 
 const Dialog = ({
+                    id,
                     open,
                     setOpen,
                     dialogTitle,
@@ -28,6 +32,19 @@ const Dialog = ({
             setOpen(false);
         }
     };
+
+    const activeUserContext = useContext(ActiveUserContext);
+    const {checkRole} = useContext(ActiveUserContext);
+
+    const checkUser = () => {
+        if (checkRole("ADMIN")) {
+            return true;
+        } else if (id === activeUserContext?.user?.id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     return (
         <MuiDialog
@@ -46,10 +63,12 @@ const Dialog = ({
 
             <DialogActions>
                 <Box sx={{display: "flex", width: "100%", justifyContent: "space-between"}}>
-                    <Box sx={{display: "flex", gap: 1}}>
-                        <Button onClick={updateAction}>Update</Button>
-                        <Button onClick={deleteAction} color="error">Delete</Button>
-                    </Box>
+                    {checkUser() && (
+                        <Box sx={{display: "flex", gap: 1}}>
+                            <Button onClick={updateAction}>Update</Button>
+                            <Button onClick={deleteAction} color="error">Delete</Button>
+                        </Box>
+                    )}
 
                     <Box sx={{display: "flex", gap: 1}}>
                         <Button onClick={submitAction} variant="contained">Submit</Button>

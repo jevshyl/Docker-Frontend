@@ -18,7 +18,7 @@ export default function ListOverviewPage() {
                 }}
             >
                 <Box>
-                    <h1>Welcome to list page</h1>
+                    <h1>Welcome to admin page</h1>
                 </Box>
 
             </Box>

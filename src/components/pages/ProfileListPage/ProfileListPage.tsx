@@ -1,5 +1,4 @@
 import {Box} from '@mui/system';
-import Navbar from "../../molecules/Navbar";
 import {useEffect, useState} from "react";
 import {User} from "../../../types/models/User.model";
 import {useParams} from "react-router-dom";
@@ -37,6 +36,7 @@ export default function HomePage() {
             }}
         >
             <Dialog
+                id={user?.id}
                 open={open}
                 setOpen={setOpen}
                 dialogTitle={selectedElement?.title}
