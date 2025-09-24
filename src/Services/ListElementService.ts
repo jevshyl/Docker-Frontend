@@ -1,5 +1,4 @@
 import api from '../config/Api';
-import { User } from '../types/models/User.model';
 import {ListElement} from "../types/models/ListElement.model";
 
 const ListElementService = {
@@ -13,7 +12,7 @@ const ListElementService = {
     },
 
     addListElement: async (listElement: ListElement) => {
-        const res = await api.post(`/list-element/${listElement.id}`, listElement);
+        const res = await api.post(`/list-element`, listElement);
         return res.data;
     },
 

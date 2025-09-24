@@ -1,6 +1,9 @@
 import {Box, Button, Dialog as MuiDialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import ActiveUserContext from "../../Contexts/ActiveUserContext";
+import {ListElement} from "../../types/models/ListElement.model";
+import ListElementForm from "../molecules/ListElementForm";
+import ListElementService from "../../Services/ListElementService";
 
 type DialogProps = {
     id?: string;
@@ -8,12 +11,11 @@ type DialogProps = {
     setOpen?: (setOpen: boolean) => void;
     dialogTitle?: string;
     dialogContent?: string;
-    okAction?: () => void;
-    submitAction?: () => void;
-    updateAction?: () => void;
+    listElement?: ListElement;
+    onUpdate?: (updated: ListElement) => void;
     deleteAction?: () => void;
+    submitAction?: () => void;
 }
-
 
 const Dialog = ({
                     id,
@@ -21,66 +23,69 @@ const Dialog = ({
                     setOpen,
                     dialogTitle,
                     dialogContent,
-                    okAction,
-                    submitAction,
-                    updateAction,
+                    listElement,
+                    onUpdate,
                     deleteAction,
+                    submitAction
                 }: DialogProps) => {
 
-    const handleClose = () => {
-        if (setOpen !== undefined) {
-            setOpen(false);
-        }
-    };
+    const [isEditing, setIsEditing] = useState(false);
+    const handleClose = () => setOpen?.(false);
 
-    const activeUserContext = useContext(ActiveUserContext);
-    const {checkRole} = useContext(ActiveUserContext);
+    const {checkRole, user: activeUser} = useContext(ActiveUserContext);
 
     const checkUser = () => {
-        if (checkRole("ADMIN")) {
-            return true;
-        } else if (id === activeUserContext?.user?.id) {
-            return true;
-        } else {
-            return false;
-        }
+        if (checkRole("ADMIN")) return true;
+        if (id === activeUser?.id) return true;
+        return false;
     }
 
     return (
         <MuiDialog
             open={open}
             onClose={handleClose}
-            sx={{
-                display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"
-            }}
+            sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}
         >
-            <DialogTitle>
-                {dialogTitle}
-            </DialogTitle>
+            <DialogTitle>{dialogTitle}</DialogTitle>
+
             <DialogContent>
-                {dialogContent}
+                {isEditing && listElement && onUpdate ? (
+                    <ListElementForm
+                        listElement={listElement}
+                        submitActionHandler={(values: ListElement) => {
+                            ListElementService.updateListElement(values).then(res => {
+                                const updatedElement = res.data;
+                                onUpdate(updatedElement);
+                                setIsEditing(false);
+                                handleClose();
+                            });
+                        }}
+                        onCancel={() => setIsEditing(false)}
+                    />
+                ) : (
+                    <Box>{dialogContent}</Box>
+                )}
             </DialogContent>
 
-            <DialogActions>
-                <Box sx={{display: "flex", width: "100%", justifyContent: "space-between"}}>
-                    {checkUser() && (
+            {!isEditing && (
+                <DialogActions>
+                    <Box sx={{display: "flex", width: "100%", justifyContent: "space-between"}}>
+                        {checkUser() && listElement && (
+                            <Box sx={{display: "flex", gap: 1}}>
+                                <Button onClick={() => setIsEditing(true)}>Update</Button>
+                                <Button onClick={deleteAction} color="error">Delete</Button>
+                            </Box>
+                        )}
+
                         <Box sx={{display: "flex", gap: 1}}>
-                            <Button onClick={updateAction}>Update</Button>
-                            <Button onClick={deleteAction} color="error">Delete</Button>
+                            <Button onClick={submitAction} variant="contained">Submit</Button>
+                            <Button onClick={handleClose}>Cancel</Button>
                         </Box>
-                    )}
-
-                    <Box sx={{display: "flex", gap: 1}}>
-                        <Button onClick={submitAction} variant="contained">Submit</Button>
-                        <Button onClick={handleClose}>Cancel</Button>
                     </Box>
-                </Box>
-            </DialogActions>
+                </DialogActions>
+            )}
         </MuiDialog>
-
-
-    )
-
+    );
 }
 
 export default Dialog;
