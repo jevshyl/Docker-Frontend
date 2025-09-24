@@ -13,6 +13,7 @@ const UserPage = () => {
     lastName: '',
     email: '',
     roles: [],
+    listElements: []
   });
 
   useEffect(() => {

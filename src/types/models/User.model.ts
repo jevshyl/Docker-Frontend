@@ -1,4 +1,5 @@
 import { Role } from './Role.model';
+import {ListElement} from "./ListElement.model";
 
 export type User = {
   id: string;
@@ -6,4 +7,5 @@ export type User = {
   firstName: string;
   lastName: string;
   roles: Role[];
+  listElements: ListElement[];
 };

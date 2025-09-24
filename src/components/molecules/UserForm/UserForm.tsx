@@ -19,6 +19,7 @@ const UserForm = ({ user, submitActionHandler }: UserProps) => {
       firstName: user ? user.firstName : '',
       email: user ? user.email : '',
       roles: user ? user.roles : [],
+      listElements: user ? user.listElements : []
     },
     validationSchema: object({
       firstName: string().required().min(2).max(50),
