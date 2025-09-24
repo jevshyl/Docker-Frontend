@@ -29,9 +29,7 @@ export default function Navbar() {
             {activeUser.user && (
                 <>
                     {checkRole("ADMIN") && (
-                        <>
-                            <NavButton path={"admin"} name={"Admin"}/>
-                        </>
+                        <NavButton path={"admin"} name={"Admin"}/>
                     )}
                     <NavButton path={"users"} name={"Users"}/>
                     <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"}/>
