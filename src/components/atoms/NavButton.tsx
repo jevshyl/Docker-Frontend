@@ -6,7 +6,7 @@ type NavButtonProps = {
     name: string;
 };
 
-export default function NavButton({ path, name }: NavButtonProps) {
+export default function NavButton({ path, name }: Readonly<NavButtonProps>) {
     const navigate = useNavigate();
 
 
