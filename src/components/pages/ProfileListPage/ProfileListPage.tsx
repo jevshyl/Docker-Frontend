@@ -78,6 +78,7 @@ export default function ProfileListPage() {
                 setOpen={setOpen}
                 dialogTitle={selectedElement?.title}
                 dialogContent={selectedElement?.text}
+                importance={selectedElement?.importance}
                 listElement={selectedElement || undefined}
                 deleteAction={deleteActionHandler}
             />

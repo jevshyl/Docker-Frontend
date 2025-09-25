@@ -11,6 +11,7 @@ type DialogProps = {
     setOpen?: (setOpen: boolean) => void;
     dialogTitle?: string;
     dialogContent?: string;
+    importance?: string;
     listElement?: ListElement;
     deleteAction?: () => void;
 }
@@ -21,6 +22,7 @@ const Dialog = ({
                     setOpen,
                     dialogTitle,
                     dialogContent,
+                    importance,
                     listElement,
                     deleteAction,
                 }: DialogProps) => {
@@ -58,7 +60,17 @@ const Dialog = ({
                         onCancel={() => setIsEditing(false)}
                     />
                 ) : (
-                    <Box>{dialogContent}</Box>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            gap: 2,
+                            flexDirection: "column"
+                        }}
+                    >
+                        <Box>{dialogContent}</Box>
+                        <Box>Importance: {importance}</Box>
+                    </Box>
                 )}
             </DialogContent>
 
