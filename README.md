@@ -121,6 +121,11 @@ What tests
 
 ## Pages
 
-homepage: http://localhost:3000
-login: http://localhost:3000/login
-user component: http://localhost:3000/users
+öffentliche Homepage:
+- Homepage: http://localhost:3000/
+ 
+User Overview, wo man als User andere Userprofile besuchen kann und als Admin CRUD Operationen zu den Users ausführen kann:
+- User Overview: http://localhost:3000/users
+ 
+Auf der ProfilePage kann man den Vor- und Nachnamen des spezifischen Users und die Listeneinträge sehen. In der eigenen ProfilePage kann man als User neue Listeneinträge erstellen und eigene Listeneinträge bearbeiten oder löschen. Als Admin kann man auch der ProfilePage der anderen Users deren Listeneinträge bearbeiten und löschen. Um einen Listeneintrag zu bearbeiten oder löschen kann man einfach auf den Listeneintrag klicken und es öffnet sich ein Dialog.
+- Profile Page: http://localhost:3000/http://localhost:3000/profileList/{userId}
