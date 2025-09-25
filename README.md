@@ -71,7 +71,7 @@ Frontend runs on: http://localhost:3000
 ## User Test Data
 * Admin: admin@example.com / 1234
 * User 1: user@example.com / 1234
-* User 2: second@example.com / 1234
+* User 2: seconduser@example.com / 1234
 
 
 
