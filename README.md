@@ -98,7 +98,7 @@ To run the cypress tests, you'll need to go to your Specs, which you'll find in 
 - userCreatesListElement
 - userTriesToAddElementWithoutLogin
 
-Click on one of those tests. I should run directly. If the test stops at the login and doesn't continue just restart the test. That should fix the problem.
+Click on one of those tests. It should run directly. If the test stops at the login and doesn't continue just restart the test. That should fix the problem.
 #### Where to find tests
 You can find our cypress test here:
 - UEK223-OurSpace-Group-6-Frontend/cypress/e2e/
@@ -107,7 +107,7 @@ You can find our cypress test here:
 * The collection of tests you can find in the backend here: \postman\OurSpace-tests.postman_collection.json
 * The necessary environment variables for the collection you can find in the backend: \postman\OurSpace-tests.postman_environment.json
 * A test run that has been carried out you can find in the backend: \postman\OurSpace-tests.postman_test_run.json
-What tests
+
 #### Import to Postman
 - Open Postman
 - Click "Import" → "File"
@@ -122,11 +122,15 @@ What tests
 
 ## Pages
 
-öffentliche Homepage:
+Public homepage:
 - Homepage: http://localhost:3000/
+
+Private Admin Page that only the Admin can see:
+- Admin Page: http://localhost:3000/admin
  
-User Overview, wo man als User andere Userprofile besuchen kann und als Admin CRUD Operationen zu den Users ausführen kann:
+User Overview, where users can visit other user profiles and administrators can perform CRUD operations on users:
 - User Overview: http://localhost:3000/users
  
-Auf der ProfilePage kann man den Vor- und Nachnamen des spezifischen Users und die Listeneinträge sehen. In der eigenen ProfilePage kann man als User neue Listeneinträge erstellen und eigene Listeneinträge bearbeiten oder löschen. Als Admin kann man auch der ProfilePage der anderen Users deren Listeneinträge bearbeiten und löschen. Um einen Listeneintrag zu bearbeiten oder löschen kann man einfach auf den Listeneintrag klicken und es öffnet sich ein Dialog.
-- Profile Page: http://localhost:3000/http://localhost:3000/profileList/{userId}
+On the ProfilePage, you can see the first and last names of specific users and their list entries. On your own ProfilePage, you can create new list entries and edit or delete your own list entries. As an admin, you can also edit and delete other users' list entries on their ProfilePage. To edit or delete a list entry, simply click on the list entry and a dialog box will open.
+- Profile Page: http://localhost:3000/profileList/{userId}
+
