@@ -56,8 +56,8 @@ export default function ProfileListPage() {
     const activeUser = useContext(ActiveUserContext);
 
     const checkUser = () => {
-        if (user.id === activeUser?.user?.id) return true;
-        return false;
+        return user.id === activeUser?.user?.id;
+
     }
 
     return (

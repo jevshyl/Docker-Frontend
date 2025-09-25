@@ -34,8 +34,8 @@ const Dialog = ({
 
     const checkUser = () => {
         if (checkRole("ADMIN")) return true;
-        if (id === activeUser?.id) return true;
-        return false;
+        return id === activeUser?.id;
+
     }
 
     return (

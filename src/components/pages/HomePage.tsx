@@ -1,7 +1,6 @@
 import {Box} from '@mui/system';
 import logo from '../../logo1.png';
 import Navbar from "../molecules/Navbar";
-import ElementCard from "../atoms/ElementCard";
 
 export default function HomePage() {
 
