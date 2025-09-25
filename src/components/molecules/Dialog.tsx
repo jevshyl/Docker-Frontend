@@ -12,9 +12,7 @@ type DialogProps = {
     dialogTitle?: string;
     dialogContent?: string;
     listElement?: ListElement;
-    onUpdate?: (updated: ListElement) => void;
     deleteAction?: () => void;
-    submitAction?: () => void;
 }
 
 const Dialog = ({
@@ -24,9 +22,7 @@ const Dialog = ({
                     dialogTitle,
                     dialogContent,
                     listElement,
-                    onUpdate,
                     deleteAction,
-                    submitAction
                 }: DialogProps) => {
 
     const [isEditing, setIsEditing] = useState(false);
@@ -49,14 +45,13 @@ const Dialog = ({
             <DialogTitle>{dialogTitle}</DialogTitle>
 
             <DialogContent>
-                {isEditing && listElement && onUpdate ? (
+                {isEditing && listElement ? (
                     <ListElementForm
                         listElement={listElement}
                         submitActionHandler={(values: ListElement) => {
-                            ListElementService.updateListElement(values).then(res => {
-                                const updatedElement = res.data;
-                                onUpdate(updatedElement);
+                            ListElementService.updateListElement(values).then(() => {
                                 setIsEditing(false);
+                                window.location.reload();
                                 handleClose();
                             });
                         }}
@@ -78,7 +73,6 @@ const Dialog = ({
                         )}
 
                         <Box sx={{display: "flex", gap: 1}}>
-                            <Button onClick={submitAction} variant="contained">Submit</Button>
                             <Button onClick={handleClose}>Cancel</Button>
                         </Box>
                     </Box>

@@ -3,7 +3,6 @@ import {Navigate} from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
 import ActiveUserContext from '../Contexts/ActiveUserContext';
 import AuthorityService from '../Services/AuthorityService';
-import {Button} from '@mui/material';
 import authorities from '../config/Authorities';
 import Navbar from "../components/molecules/Navbar";
 
@@ -18,7 +17,7 @@ type JWTType = {
 };
 
 const PrivateRoute: React.FC<Props> = ({
-                                           requiredAuths: requiredAuths,
+                                           requiredAuths,
                                            element: RouteComponent,
                                        }) => {
     const activeUserContext = useContext(ActiveUserContext);

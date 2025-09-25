@@ -15,14 +15,7 @@ interface ListElementFormProps {
 
 const ListElementForm = ({ listElement, submitActionHandler, onCancel }: ListElementFormProps) => {
     const { userId } = useParams();
-    const [user, setUser] = useState<User>({
-        id: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        roles: [],
-        listElements: []
-    });
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         if (userId) {
@@ -33,11 +26,12 @@ const ListElementForm = ({ listElement, submitActionHandler, onCancel }: ListEle
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            id: listElement?.id || '',
+            id: listElement?.id,
             title: listElement?.title || '',
             text: listElement?.text || '',
             importance: listElement?.importance || 'LOW',
-            userId: user.id,
+            userId: user?.id || '',
+            creationDate: listElement?.creationDate
         },
         validationSchema: object({
             title: string().required('Title is required').min(2, 'Too short').max(254, 'Too long'),
@@ -47,11 +41,18 @@ const ListElementForm = ({ listElement, submitActionHandler, onCancel }: ListEle
         onSubmit: values => submitActionHandler(values),
     });
 
+    useEffect(() => {
+        if (user?.id) {
+            formik.setFieldValue('userId', user.id);
+        }
+    }, [user?.id]);
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <Box sx={{ paddingTop: '15px' }}>
                 <TextField
                     id='title'
+                    data-cy={"title"}
                     label='Title'
                     name="title"
                     variant='outlined'
@@ -67,6 +68,7 @@ const ListElementForm = ({ listElement, submitActionHandler, onCancel }: ListEle
 
                 <TextField
                     id='text'
+                    data-cy={"text"}
                     label='Text'
                     name="text"
                     variant='outlined'
@@ -83,6 +85,7 @@ const ListElementForm = ({ listElement, submitActionHandler, onCancel }: ListEle
                 <InputLabel id="importance-label">Importance</InputLabel>
                 <Select
                     labelId="importance-label"
+                    data-cy={"select"}
                     id="importance"
                     name="importance"
                     value={formik.values.importance}
@@ -100,6 +103,7 @@ const ListElementForm = ({ listElement, submitActionHandler, onCancel }: ListEle
                 <Box sx={{ marginTop: '15px' }}>
                     <Button
                         variant='contained'
+                        data-cy="submit"
                         color='success'
                         type='submit'
                         disabled={!(formik.dirty && formik.isValid)}

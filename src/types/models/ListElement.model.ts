@@ -4,7 +4,7 @@ export type ListElement = {
     id?: string;
     title: string;
     text: string;
-    created_at?: string;
+    creationDate?: string;
     importance: string;
     user?: User[]
 };

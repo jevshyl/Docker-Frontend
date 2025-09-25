@@ -32,45 +32,26 @@ export default function ProfileListPage() {
     }, [userId]);
 
     const submitActionHandler = (values: ListElement) => {
-        if (values.id) {
-            ListElementService.updateListElement(values).then(res => {
-                const updatedElement = res.data;
-                setUser(prev => prev ? {
-                    ...prev,
-                    listElements: prev.listElements.map(el => el.id === updatedElement.id ? updatedElement : el)
-                } : prev);
-                setAddElement(null);
-                setOpen(false);
-            });
-        } else {
-            ListElementService.addListElement(values).then(res => {
-                const newElement = res.data;
-                if (!newElement) return;
-                setUser(prev => ({
-                    ...prev,
-                    listElements: [...(prev?.listElements || []), newElement]
-                }));
-                setAddElement(null);
-            });
-        }
+        ListElementService.addListElement(values).then(res => {
+            const newElement = res.data;
+            if (!newElement) return;
+            setAddElement(null);
+        });
     };
 
     const deleteActionHandler = () => {
         if (selectedElement?.id) {
             ListElementService.deleteListElement(selectedElement.id).then(() => {
-                setUser(prev => prev ? {
-                    ...prev,
-                    listElements: prev.listElements.filter(el => el.id !== selectedElement.id)
-                } : prev);
                 setOpen(false);
             });
         }
+        window.location.reload();
     };
 
     const [open, setOpen] = useState<boolean>(false);
     const [selectedElement, setSelectedElement] = useState<ListElement | null>(null);
     const [addElement, setAddElement] = useState<ListElement | null>(null);
-
+    const {checkRole} = useContext(ActiveUserContext);
     const activeUser = useContext(ActiveUserContext);
 
     const checkUser = () => {
@@ -97,14 +78,14 @@ export default function ProfileListPage() {
                 dialogTitle={selectedElement?.title}
                 dialogContent={selectedElement?.text}
                 listElement={selectedElement || undefined}
-                onUpdate={submitActionHandler}
                 deleteAction={deleteActionHandler}
             />
 
-            {checkUser() && (
+            {checkUser() && checkRole("USER") && (
 
                 <Box sx={{margin: '20px 0'}}>
                     <Button
+                        data-cy="addListElement"
                         variant="contained"
                         color="primary"
                         onClick={() =>

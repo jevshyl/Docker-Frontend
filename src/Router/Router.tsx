@@ -7,18 +7,12 @@ import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
 import ProfileListPage from "../components/pages/ProfileListPage/ProfileListPage";
 import AdminPage from "../components/pages/AdminPage/AdminPage";
-import {useContext} from "react";
-import ActiveUserContext from "../Contexts/ActiveUserContext";
-import ListOverviewPage from "../components/pages/AdminPage/AdminPage";
 
 /**
  * Router component renders a route switch with all available pages
  */
 
 const Router = () => {
-    const { checkRole } = useContext(ActiveUserContext);
-
-    /** navigate to different "home"-locations depending on Role the user have */
 
     return (
         <Routes>
@@ -33,7 +27,7 @@ const Router = () => {
                 path='/useredit'
                 element={
                     <PrivateRoute
-                        requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_CREATE]}
+                        requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_MODIFY]}
                         element={<UserPage/>}
                     ></PrivateRoute>
                 }
@@ -53,18 +47,8 @@ const Router = () => {
                 path='/admin'
                 element={
                     <PrivateRoute
-                        requiredAuths={[]}
+                        requiredAuths={[authorities.SEE_ADMIN_PAGE]}
                         element={<AdminPage/>}
-                    ></PrivateRoute>
-                }
-            />
-
-            <Route
-                path='/listOverview'
-                element={
-                    <PrivateRoute
-                        requiredAuths={[]}
-                        element={<ListOverviewPage/>}
                     ></PrivateRoute>
                 }
             />
@@ -73,7 +57,7 @@ const Router = () => {
                 path='/useredit/:userId'
                 element={
                     <PrivateRoute
-                        requiredAuths={[authorities.USER_READ]}
+                        requiredAuths={[authorities.USER_MODIFY]}
                         element={<UserPage/>}
                     ></PrivateRoute>
                 }

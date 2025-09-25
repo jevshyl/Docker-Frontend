@@ -7,8 +7,8 @@ const ListElementService = {
         return data;
     },
 
-    updateListElement: (listElement: ListElement) => {
-        return api.put(`/list-element/${listElement.id}`, listElement);
+    updateListElement: async (listElement: ListElement) => {
+        return await api.put(`/list-element/${listElement.id}`, listElement);
     },
 
     addListElement: async (listElement: ListElement) => {

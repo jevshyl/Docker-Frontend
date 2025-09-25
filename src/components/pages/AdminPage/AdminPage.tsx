@@ -1,6 +1,6 @@
 import {Box} from '@mui/system';
 
-export default function ListOverviewPage() {
+export default function AdminPage () {
 
     return (
 
