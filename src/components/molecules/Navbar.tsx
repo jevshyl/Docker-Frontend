@@ -12,6 +12,7 @@ export default function Navbar() {
     return (
         <Box
             display="flex"
+            data-cy="navbar"
             alignItems="center"
             justifyContent="space-around"
             flexDirection="row"
@@ -32,7 +33,7 @@ export default function Navbar() {
                         <NavButton path={"admin"} name={"Admin"}/>
                     )}
                     <NavButton path={"users"} name={"Users"}/>
-                    <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"}/>
+                    <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"} data-cy="nav-own-profilePage"/>
                     <Button onClick={activeUser.logout}>Logout</Button>
                 </>
             )}

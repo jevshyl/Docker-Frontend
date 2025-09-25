@@ -37,6 +37,7 @@ export default function ProfileListPage() {
             if (!newElement) return;
             setAddElement(null);
         });
+        window.location.reload();
     };
 
     const deleteActionHandler = () => {

@@ -36,7 +36,7 @@ const UserTable = () => {
             {users.map((user) => (
                 <div key={user.id}>
                     <Card sx={{minWidth: 275}}>
-                        <CardContent>
+                        <CardContent data-cy="userCard">
                             {user.firstName} {user.lastName}
                             {checkRole("ADMIN") && user.email}
                             <CardActions>
@@ -63,6 +63,7 @@ const UserTable = () => {
                                 )}
                                 <Button
                                     size='small'
+                                    data-cy="view-button"
                                     color='primary'
                                     variant='contained'
                                     onClick={() => navigate(`../profileList/${user?.id}`)}
