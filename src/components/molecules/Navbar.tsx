@@ -32,6 +32,7 @@ export default function Navbar() {
                     {checkRole("ADMIN") && (
                         <NavButton path={"admin"} name={"Admin"}/>
                     )}
+                    <NavButton path={""} name={"Home"}/>
                     <NavButton path={"users"} name={"Users"}/>
                     <NavButton path={`profileList/${activeUser.user?.id}`} name={"Profile Page"} data-cy="nav-own-profilePage"/>
                     <Button onClick={activeUser.logout}>Logout</Button>
