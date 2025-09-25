@@ -1,4 +1,4 @@
-# README #
+ # README #
 
 This is the frontend to a Fullstack Web application from Jevgenia and Luka.
 
@@ -97,6 +97,7 @@ To run the cypress tests, you'll need to go to your Specs, which you'll find in 
 - adminCannotAddElements
 - userCreatesListElement
 - userTriesToAddElementWithoutLogin
+
 Click on one of those tests. I should run directly. If the test stops at the login and doesn't continue just restart the test. That should fix the problem.
 #### Where to find tests
 You can find our cypress test here:
