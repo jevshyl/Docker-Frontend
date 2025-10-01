@@ -26,3 +26,5 @@ EXPOSE 80
 
 # Start the nginx web server
 CMD ["nginx", "-g", "daemon off;"]
+
+test
