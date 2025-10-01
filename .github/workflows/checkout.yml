@@ -1,0 +1,18 @@
+name: checkout
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Make run.sh executable
+        run: chmod +x run.sh
+
+      - name: Run run.sh
+        run: ./run.sh
