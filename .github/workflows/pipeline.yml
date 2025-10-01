@@ -11,5 +11,5 @@ jobs:
       - name: Greet
         run: echo "Hello World!"
       - name: Reveal Secret key  
-        run: echo $MY_SECRET
+        run: echo ${MY_SECRET}
   
