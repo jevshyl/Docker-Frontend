@@ -30,7 +30,7 @@ jobs:
         run: ./run.sh
         
       - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@ master
+        uses: appleboy/ssh-action@master
         with:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
