@@ -16,3 +16,15 @@ jobs:
       - name: Reveal Key
         run: echo $MY_SECRET
   
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Make run.sh executable
+        run: chmod +x run.sh
+
+      - name: Run run.sh
+        run: ./run.sh
