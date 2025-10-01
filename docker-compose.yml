@@ -1,7 +1,7 @@
 services:
   frontend:
     restart: unless-stopped
-    image: 'frontend-docker-image'
+    image: 'jevshyl/frontend-docker-image'
     container_name: frontend
     depends_on:
       - backend
@@ -9,7 +9,7 @@ services:
       - '3000:80'
   backend:
     restart: unless-stopped
-    image: 'backend-docker-image'
+    image: 'jevshyl/backend-docker-image'
     container_name: backend
     ports:
       - '8080:8080'
