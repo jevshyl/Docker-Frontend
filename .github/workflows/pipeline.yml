@@ -9,5 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Greet
-        run: echo "Hello"
+        run: echo "Hello World!"
+  reveal-key:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reveal Key
+        run: echo $MY_SECRET
   
