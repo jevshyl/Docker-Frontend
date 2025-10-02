@@ -3,45 +3,6 @@ name: Say Hello
 on:
   push
 
-
-jobs:
-  say-hello:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Greet
-        run: echo "Hello World!"
-  reveal-key:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Reveal Key
-        run: echo ${{ secrets.MY_SECRET }}
-  
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Make run.sh executable
-        run: chmod +x run.sh
-
-      - name: Run run.sh
-        run: ./run.sh
-        
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: 2222
-          name: Say Hello
-
-on:
-  push
-
-
 jobs:
   say-hello:
     runs-on: ubuntu-latest
