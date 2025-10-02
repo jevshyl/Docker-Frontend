@@ -25,3 +25,4 @@ jobs:
           browser: chrome
           runTests: true
           record: false
+
