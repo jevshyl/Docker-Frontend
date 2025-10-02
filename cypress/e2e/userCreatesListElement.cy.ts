@@ -6,7 +6,7 @@ describe("Add list element as user", () => {
         cy.get('[data-cy=password]').type("1234");
         cy.get('[data-cy=submit-login]').click();
 
-        cy.request("POST", "http://localhost:8080/user/login", {
+        cy.request("POST", "https://jevgenia.dev.noseryoung.ch/login", {
             email: "user@example.com",
             password: "1234"
         })
