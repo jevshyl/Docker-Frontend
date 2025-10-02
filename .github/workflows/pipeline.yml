@@ -15,21 +15,6 @@ jobs:
     steps:
       - name: Reveal Key
         run: echo ${{ secrets.MY_SECRET }}
-        
-  run-file:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Make run.sh executable
-        run: chmod +x run.sh
-
-      - name: Run run.sh
-        run: ./run.sh
-    
-
   
   build:
     runs-on: ubuntu-latest
@@ -42,6 +27,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 2222
-          script: |
-            echo "Hello World"
-            ./run.sh
+          script: ./deploy.sh
