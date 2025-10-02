@@ -8,8 +8,9 @@ describe("Add list element as user", () => {
 
         cy.request("POST", "http://localhost:8080/user/login", {
             email: "user@example.com",
-            password: "1234"
-        })
+            password: "1234",
+            failOnStatusCode: false
+        }).its('status').should('eq', 200);
     })
 
     it("Should create a new list element successfully", () => {

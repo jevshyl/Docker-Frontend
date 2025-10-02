@@ -9,8 +9,8 @@ describe("Try to add list element for other user as user", () => {
         cy.request("POST", "http://localhost:8080/user/login", {
             email: "admin@example.com",
             password: "1234"
-        })
-    })
+        }).its('status').should('eq', 200);
+})
 
     it("Can't create own elements", () => {
         cy.visit("profileList/ba804cb9-fa14-42a5-afaf-be488742fc54");
