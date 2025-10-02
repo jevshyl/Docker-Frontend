@@ -53,3 +53,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 2222
           script: ./deploy.sh
+          
