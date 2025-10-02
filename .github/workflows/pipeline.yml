@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Reveal Key
         run: echo ${{ secrets.MY_SECRET }}
-  
-  build:
+        
+  run-file:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,7 +27,13 @@ jobs:
 
       - name: Run run.sh
         run: ./run.sh
-        
+    
+
+  
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
