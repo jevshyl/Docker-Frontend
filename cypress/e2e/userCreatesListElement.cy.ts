@@ -9,7 +9,6 @@ describe("Add list element as user", () => {
         cy.request("POST", "https://jevgenia.dev.noseryoung.ch/api/user/login", {
             email: "user@example.com",
             password: "1234",
-            failOnStatusCode: false
         }).its('status').should('eq', 200);
     })
 
