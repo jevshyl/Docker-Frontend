@@ -25,7 +25,7 @@ jobs:
         with:
           wait-on: 'https://jevgenia.dev.noseryoung.ch/'
           wait-on-timeout: 60
-          spec: cypress/e2e/adminCannotAddElement.cy.ts
+          spec: cypress/e2e/adminCannotAddElemets.cy.ts
 
   build:
     runs-on: ubuntu-latest
