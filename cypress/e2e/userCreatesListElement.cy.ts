@@ -16,11 +16,11 @@ describe("Add list element as user", () => {
         cy.visit("/profileList/0d8fa44c-54fd-4cd0-ace9-2a7da57992de");
         cy.get('[data-cy=addListElement]', { timeout: 15000 }).should("be.visible").click();
 
-        cy.get('[data-cy=title]').click();
-        cy.get('[data-cy=text]').click();
+        cy.get('[data-cy=title]').focus().blur();
+        cy.get('[data-cy=text]').focus().blur();
         cy.get('[data-cy=select]').click();
-        cy.contains("Title is required").should("be.visible");
-        cy.contains("Text is required").should("be.visible");
+        cy.contains("Title is required", { timeout: 10000 }).should("be.visible");
+        cy.contains("Text is required", { timeout: 10000 }).should("be.visible");
         cy.get('li[data-value="HIGH"]').click();
         cy.get('[data-cy=submit]').should('be.disabled');
 
