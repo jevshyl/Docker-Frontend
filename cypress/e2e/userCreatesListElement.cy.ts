@@ -19,9 +19,9 @@ describe("Add list element as user", () => {
         cy.get('[data-cy=title]').click();
         cy.get('[data-cy=text]').click();
         cy.get('[data-cy=select]').click();
+        cy.get('li[data-value="HIGH"]').click();
         cy.contains("Title is required", { timeout: 10000 }).should("be.visible");
         cy.contains("Text is required", { timeout: 10000 }).should("be.visible");
-        cy.get('li[data-value="HIGH"]').click();
         cy.get('[data-cy=submit]').should('be.disabled');
 
 
