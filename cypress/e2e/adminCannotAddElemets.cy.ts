@@ -13,7 +13,7 @@ describe("Try to add list element for other user as user", () => {
 })
 
     it("Can't create own elements", () => {
-        cy.visit("profileList/ba804cb9-fa14-42a5-afaf-be488742fc54");
+        cy.visit("https://jevgenia.dev.noseryoung.ch/profileList/0d8fa44c-54fd-4cd0-ace9-2a7da57992de");
         cy.get('[data-cy=addListElement]', { timeout: 15000 }).should("not.exist");
 
     });
