@@ -16,7 +16,6 @@ describe("Add list element as user", () => {
         cy.visit("/profileList/0d8fa44c-54fd-4cd0-ace9-2a7da57992de");
         cy.get('[data-cy=addListElement]', { timeout: 15000 }).should("be.visible").click();
 
-        cy.get('[data-cy=addListElement]').click();
         cy.get('[data-cy=title]').click();
         cy.get('[data-cy=text]').click();
         cy.get('[data-cy=select]').click();
